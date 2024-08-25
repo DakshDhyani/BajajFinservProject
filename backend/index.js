@@ -5,11 +5,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// CORS for cross-origin requests (if needed)
 const cors = require('cors');
 app.use(cors());
 
-// POST /bfhl endpoint
+
 app.post('/bfhl', (req, res) => {
   try {
     const { data } = req.body;
@@ -21,7 +20,7 @@ app.post('/bfhl', (req, res) => {
       });
     }
 
-    // Separate numbers and alphabets
+    
     const numbers = data.filter(item => !isNaN(item));
     const alphabets = data.filter(item => /^[a-zA-Z]$/.test(item));
     const lowercaseAlphabets = alphabets.filter(item => /^[a-z]$/.test(item));
@@ -59,7 +58,7 @@ app.get('/bfhl', (req, res) => {
   });
 });
 
-// Start the server
+// initialize
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
